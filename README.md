@@ -10,4 +10,4 @@ This project demonstrates the deployment of a simple "Hello User" web applicatio
   <img src="./image.png" alt="Architecture Diagram" width="900"/>
 </p> -->
 
-<!-- ![Architecture Diagram](./image.png) -->
+![Architecture Diagram](./image.png)

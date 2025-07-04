@@ -1,6 +1,7 @@
+# S3 Bucket to store user-uploaded images
 resource "aws_s3_bucket" "user_images" {
   bucket        = "${var.project_name}-user-images"
-  force_destroy = false
+  force_destroy = false  # Prevent accidental deletion if bucket is not empty
 
   tags = {
     Name        = "${var.project_name}-user-images"
@@ -8,15 +9,17 @@ resource "aws_s3_bucket" "user_images" {
   }
 }
 
+# Block some public access settings (ACLs), but allow bucket policy to manage access
 resource "aws_s3_bucket_public_access_block" "block_all" {
   bucket = aws_s3_bucket.user_images.id
 
-  block_public_acls       = true
-  block_public_policy     = false
+  block_public_acls       = true    # Ignore public ACLs
+  block_public_policy     = false   # Allow usage of bucket policy (see below)
   ignore_public_acls      = true
-  restrict_public_buckets = false
+  restrict_public_buckets = false   # Do not restrict public access if policy allows it
 }
 
+# Enable versioning to track changes to objects over time
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.user_images.id
 
@@ -25,6 +28,7 @@ resource "aws_s3_bucket_versioning" "versioning" {
   }
 }
 
+# Enable server-side encryption (SSE) using AES256 (Amazon-managed encryption)
 resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
   bucket = aws_s3_bucket.user_images.id
 
@@ -35,6 +39,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
   }
 }
 
+# Bucket policy to allow public read access (GET) to all objects in the bucket
 resource "aws_s3_bucket_policy" "public_read" {
   bucket = aws_s3_bucket.user_images.id
 
@@ -44,11 +49,10 @@ resource "aws_s3_bucket_policy" "public_read" {
       {
         Sid       = "PublicReadGetObject"
         Effect    = "Allow"
-        Principal = "*"
-        Action    = "s3:GetObject"
-        Resource  = "${aws_s3_bucket.user_images.arn}/*"
+        Principal = "*"  # Allow all users (public access)
+        Action    = "s3:GetObject"  # Only allow read/download
+        Resource  = "${aws_s3_bucket.user_images.arn}/*"  # Apply to all objects in the bucket
       }
     ]
   })
 }
-

@@ -34,7 +34,7 @@ Terraform is used to provision the following AWS resources:
 
 Below is a screenshot of the deployed application:
 
-![Application Screenshot](./app.png.png)
+![Application Screenshot](./app.png)
 
 The application provides a user-friendly interface where users can submit their name and image, and see a list of other submissions.
 

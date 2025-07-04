@@ -6,4 +6,8 @@ This project demonstrates the deployment of a simple "Hello User" web applicatio
 
 ## Architecture
 
-![Architecture Diagram](./arch.png)
+<p align="center">
+  <img src="./arch.png" alt="Architecture Diagram" width="900"/>
+</p>
+
+<!-- ![Architecture Diagram](./arch.png) -->

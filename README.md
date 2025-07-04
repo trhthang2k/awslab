@@ -38,6 +38,9 @@ Below is a screenshot of the deployed application:
 
 The application provides a user-friendly interface where users can submit their name and image, and see a list of other submissions.
 
+> **Note:** The domain used for deployment is a temporary testing domain and holds no real significance:  
+> [https://tulnz.link](https://tulnz.link)
+
 ---
 
 ## How to Deploy

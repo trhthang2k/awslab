@@ -11,10 +11,10 @@ docker pull trhthang/homework:latest
 
 # Chạy container với các biến môi trường cần thiết
 docker run -d -p 3000:3000 \
-  -e AWS_REGION=ap-northeast-2 \
-  -e S3_BUCKET=hello-world-user-images \
-  -e DB_HOST=hello-world-demo-db.cxm4mamy6vlt.ap-northeast-2.rds.amazonaws.com \
-  -e DB_USER=admin \
-  -e DB_PASSWORD=demo1234! \
-  -e DB_NAME=hello_users_db \
+  -e AWS_REGION=\
+  -e S3_BUCKET= \
+  -e DB_HOST= \
+  -e DB_USER= \
+  -e DB_PASSWORD=\
+  -e DB_NAME= \
   trhthang/homework:latest
